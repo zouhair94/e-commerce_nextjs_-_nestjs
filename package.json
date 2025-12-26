@@ -9,7 +9,8 @@
     "dev": "turbo run dev --parallel",
     "dev:frontend": "turbo run dev --filter=@app/frontend",
     "dev:backend": "turbo run dev --filter=@app/backend",
-    "build": "turbo run build"
+    "build": "turbo run build",
+    "lint": "turbo run lint"
   },
   "devDependencies": {
     "turbo": "^2.7.2"
