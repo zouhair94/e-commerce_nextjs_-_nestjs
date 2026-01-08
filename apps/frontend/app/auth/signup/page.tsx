@@ -2,60 +2,39 @@
 
 import { Stack, TextField, Button, Typography, Link, Box } from '@mui/material';
 import NextLink from 'next/link';
+import { useActionState } from 'react';
+import createUser from './create-user';
 
 export default function Signup() {
+    const [state, formAction] = useActionState(createUser, { error: "" });
     return (
-        <Stack
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
-            sx={{ width: '100%', maxWidth: 350, mx: 'auto', p: 2 }}
-        >
-            {/* Header for better UX */}
-            <Typography variant="h4" component="h1" gutterBottom fontWeight="bold">
-                Sign-up
-            </Typography>
-
-            <Stack spacing={2.5} sx={{ width: '100%' }}>
+        <form action={formAction} className="w-full max-w-xs">
+            <Stack spacing={2}>
                 <TextField
+                    name="name"
+                    label="name"
+                    variant="outlined"
+                    type="text"
+                />
+                <TextField
+                    name="email"
                     label="Email"
                     variant="outlined"
-                    fullWidth
                     type="email"
-                    placeholder="email@example.com"
                 />
-
                 <TextField
+                    name="password"
                     label="Password"
-                    type="password"
                     variant="outlined"
-                    fullWidth
+                    type="password"
                 />
-
-                <Button
-                    variant="contained"
-                    size="large"
-                    fullWidth
-                    sx={{ py: 1.5, textTransform: 'none', fontSize: '1rem' }}
-                >
+                <Button type="submit" variant="contained">
                     Sign-up
                 </Button>
-
-                <Box display="flex" justifyContent="center" mt={2}>
-                    <Typography variant="body2">
-                        Don&apos;t have an account?{' '}
-                        <Link
-                            component={NextLink}
-                            href="/auth/login"
-                            underline="hover"
-                            fontWeight="medium"
-                        >
-                            Login
-                        </Link>
-                    </Typography>
-                </Box>
+                <Link component={NextLink} href="/auth/login" className="self-center">
+                    Login
+                </Link>
             </Stack>
-        </Stack>
+        </form>
     );
 }
