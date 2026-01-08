@@ -14,7 +14,7 @@
     "sourceMap": true,
     "outDir": "./dist",
     // "baseUrl": "./",
-    "rootDir": ".", 
+    "rootDir": "./src", 
     "paths": {
       "*": ["./*"]
     },
@@ -25,5 +25,8 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
-  }
+    "preserveSymlinks": true,
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "test"]
 }
