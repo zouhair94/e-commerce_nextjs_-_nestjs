@@ -9,15 +9,14 @@ export default async function createUser(
 ) {
   const response = await fetch(`${API_URL}/users`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
     body: formData,
   });
 
   const resData = await response.json();
+  console.log("Response:", resData);
+
   if (!resData.ok) {
-    return { error: "Failed to create user" };
+    return { error: resData.message || "Something went wrong" };
   }
 
   redirect("/");

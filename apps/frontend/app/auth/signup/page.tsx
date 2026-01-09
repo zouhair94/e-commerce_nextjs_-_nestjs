@@ -12,7 +12,7 @@ export default function Signup() {
             <Stack spacing={2}>
                 <TextField
                     name="name"
-                    label="name"
+                    label="Name"
                     variant="outlined"
                     type="text"
                 />
