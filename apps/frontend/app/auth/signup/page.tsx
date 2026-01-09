@@ -4,6 +4,7 @@ import { Stack, TextField, Button, Typography, Link, Box } from '@mui/material';
 import NextLink from 'next/link';
 import { useActionState } from 'react';
 import createUser from './create-user';
+import { ValidationErrors } from '@/app/util/errors';
 
 export default function Signup() {
     const [state, formAction] = useActionState(createUser, { error: "" });
@@ -15,18 +16,26 @@ export default function Signup() {
                     label="Name"
                     variant="outlined"
                     type="text"
+                    helperText={ValidationErrors(state, "name")}
+                    error={Boolean(ValidationErrors(state, "name"))}
                 />
                 <TextField
                     name="email"
                     label="Email"
                     variant="outlined"
                     type="email"
+                    helperText={
+                        ValidationErrors(state, "email")
+                    }
+                    error={Boolean(ValidationErrors(state, "email"))}
                 />
                 <TextField
                     name="password"
                     label="Password"
                     variant="outlined"
                     type="password"
+                    helperText={ValidationErrors(state, "password")}
+                    error={Boolean(ValidationErrors(state, "password"))}
                 />
                 <Button type="submit" variant="contained">
                     Sign-up
