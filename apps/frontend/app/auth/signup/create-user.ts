@@ -1,6 +1,7 @@
 "use server";
 
 import { API_URL } from "@/app/constants/api";
+import { getErrorMessage } from "@/app/util/errors";
 import { redirect } from "next/navigation";
 
 export default async function createUser(
@@ -13,10 +14,9 @@ export default async function createUser(
   });
 
   const resData = await response.json();
-  console.log("Response:", resData);
 
   if (!resData.ok) {
-    return { error: resData.message || "Something went wrong" };
+    return { error: getErrorMessage(resData.message) };
   }
 
   redirect("/");
