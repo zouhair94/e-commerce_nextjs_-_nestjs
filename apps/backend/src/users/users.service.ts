@@ -39,8 +39,17 @@ export class UsersService {
     return `This action returns a #${id} user`;
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+async getUser(filter: Prisma.UserWhereUniqueInput) {
+    return await this.prismaService.user.findUniqueOrThrow({
+      where: filter,
+    });
+  }
+
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    return await this.prismaService.user.update({
+      where: { id: id.toString() },
+      data: updateUserDto,
+    });
   }
 
   remove(id: number) {
