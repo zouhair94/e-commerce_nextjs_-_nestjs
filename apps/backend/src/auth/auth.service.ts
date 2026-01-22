@@ -1,12 +1,22 @@
-import { Injectable } from '@nestjs/common';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { UsersService } from '../users/users.service';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
-  async validateUser(email: string, password: string): Promise<any> {
-    // Here you would add your logic to validate the user credentials
-    // For example, you might query the database to find the user by email
-    // and then compare the provided password with the stored hashed password.
+  constructor(private readonly usersService: UsersService) {}
 
-    // This is a placeholder implementation
-    if (email === ' 
+  async validateUser(email: string, password: string): Promise<any> {
+    try {
+      const user = await this.usersService.getUser({ email });
+      const authenticated = await bcrypt.compare(password, user.password);
+      if (!authenticated) {
+        throw new UnauthorizedException();
+      }
+      return user;
+    } catch (err) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+  }
 }
