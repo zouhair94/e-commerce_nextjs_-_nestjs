@@ -12,12 +12,12 @@ export class UsersService {
 
   async create(createUserDto: CreateUserDto): Promise<User> {
     try {
-    return await this.prismaService.user.create({
-      data: {
-        ...createUserDto,
-        password: await bcrypt.hash(createUserDto.password, 10),
-      },
-    });
+      return await this.prismaService.user.create({
+        data: {
+          ...createUserDto,
+          password: await bcrypt.hash(createUserDto.password, 10),
+        },
+      });
     } catch (err) {
       if (
         err instanceof Prisma.PrismaClientKnownRequestError &&
@@ -39,7 +39,7 @@ export class UsersService {
     return `This action returns a #${id} user`;
   }
 
-async getUser(filter: Prisma.UserWhereUniqueInput) {
+  async getUser(filter: Prisma.UserWhereUniqueInput) {
     return await this.prismaService.user.findUniqueOrThrow({
       where: filter,
     });
