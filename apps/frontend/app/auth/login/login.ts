@@ -23,7 +23,7 @@ export default async function login(_prevState: FormError, data: FormData) {
     return { error: getErrorMessage(resData.message) };
   }
 
-  setCookie(resData);
+  await setCookie(response);
 
   redirect("/");
 }
