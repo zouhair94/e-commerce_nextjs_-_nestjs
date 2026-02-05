@@ -17,8 +17,6 @@ export default async function login(_prevState: FormError, data: FormData) {
   });
 
   const resData = await response.json();
-  console.log("response", response);
-  console.log("resData", resData);
   if (!response.ok) {
     return { error: getErrorMessage(resData.message) };
   }
