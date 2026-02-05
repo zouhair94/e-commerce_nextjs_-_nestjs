@@ -1,5 +1,5 @@
-import { API_URL } from "@/app/constants/api";
-import { getErrorMessage } from "@/app/util/errors";
+import { API_URL } from "@/app/common/constants/api";
+import { getErrorMessage } from "@/app/common/util/errors";
 
 export const post = async (path: string, data: FormData | object) => {
   const body = data instanceof FormData ? Object.fromEntries(data) : data;

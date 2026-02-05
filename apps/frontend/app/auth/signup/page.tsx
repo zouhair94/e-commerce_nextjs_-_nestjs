@@ -4,7 +4,7 @@ import { Stack, TextField, Button, Link } from '@mui/material';
 import NextLink from 'next/link';
 import { useActionState } from 'react';
 import createUser from './create-user';
-import { ValidationErrors } from '@/app/util/errors';
+import { ValidationErrors } from '@/app/common/util/errors';
 
 export default function Signup() {
     const [state, formAction] = useActionState(createUser, { error: "" });
