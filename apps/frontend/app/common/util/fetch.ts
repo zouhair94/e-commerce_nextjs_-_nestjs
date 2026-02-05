@@ -13,9 +13,9 @@ export const post = async (path: string, data: FormData | object) => {
 
   const resData = await response.json();
 
-  if (resData.error) {
+  if (!response.ok) {
     return { error: getErrorMessage(resData.message) };
   }
 
-  return { error: null, data: resData.data };
+  return { error: null, data: resData };
 };

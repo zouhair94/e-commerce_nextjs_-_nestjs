@@ -28,6 +28,7 @@ export default function Login() {
                 <Stack spacing={2.5} sx={{ width: '100%' }}>
                     <TextField
                         label="Email"
+                        name="email"
                         variant="outlined"
                         fullWidth
                         type="email"
@@ -39,6 +40,7 @@ export default function Login() {
                     <TextField
                         label="Password"
                         type="password"
+                        name="password"
                         variant="outlined"
                         fullWidth
                         helperText={ValidationErrors(state, "password")}
