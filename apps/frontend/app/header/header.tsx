@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -14,21 +13,26 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { ShoppingBasket } from '@mui/icons-material';
+import { useState, MouseEvent, useContext } from 'react';
+import { AuthContext } from '../auth/auth.context';
+import { unAuthenticatedRoutes, routes } from '../common/constants/routes';
 
-
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export default function Header() {
-    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+
+    const isAuthenticated = useContext(AuthContext);
+
+    const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
 
-    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
     };
+
+    const pages = isAuthenticated ? routes : unAuthenticatedRoutes;
 
     return (
         <AppBar position="static">
@@ -81,8 +85,8 @@ export default function Header() {
                             sx={{ display: { xs: 'block', md: 'none' } }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
+                                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                                    <Typography sx={{ textAlign: 'center' }}>{page.name}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -109,11 +113,11 @@ export default function Header() {
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
                             <Button
-                                key={page}
+                                key={page.name}
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
-                                {page}
+                                {page.name}
                             </Button>
                         ))}
                     </Box>
@@ -126,9 +130,9 @@ export default function Header() {
 
 const Settings = () => {
 
-    const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+    const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
-    const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    const handleOpenUserMenu = (event: MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
     };
 
@@ -159,11 +163,14 @@ const Settings = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
             >
-                {settings.map((setting) => (
+                <MenuItem key="Logout" onClick={handleCloseUserMenu}>
+                    <Typography sx={{ textAlign: 'center' }}>Logout</Typography>
+                </MenuItem>
+                {/* {settings.map((setting) => (
                     <MenuItem key={setting} onClick={handleCloseUserMenu}>
                         <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
                     </MenuItem>
-                ))}
+                ))} */}
             </Menu>
         </Box>);
 }
