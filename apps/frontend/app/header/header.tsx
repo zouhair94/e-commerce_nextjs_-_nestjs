@@ -121,7 +121,7 @@ export default function Header() {
                             </Button>
                         ))}
                     </Box>
-                    <Settings />
+                    {isAuthenticated && <Settings />}
                 </Toolbar>
             </Container>
         </AppBar>
