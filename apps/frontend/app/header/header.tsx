@@ -16,9 +16,10 @@ import { ShoppingBasket } from '@mui/icons-material';
 import { useState, MouseEvent, useContext } from 'react';
 import { AuthContext } from '../auth/auth.context';
 import { unAuthenticatedRoutes, routes } from '../common/constants/routes';
+import { HeaderProps } from '../common/interface/header.interface';
 
 
-export default function Header() {
+export default function Header({ logout }: HeaderProps) {
 
     const isAuthenticated = useContext(AuthContext);
 
@@ -121,14 +122,14 @@ export default function Header() {
                             </Button>
                         ))}
                     </Box>
-                    {isAuthenticated && <Settings />}
+                    {isAuthenticated && <Settings logout={logout} />}
                 </Toolbar>
             </Container>
         </AppBar>
     );
 }
 
-const Settings = () => {
+const Settings = ({ logout }: { logout: () => Promise<void> }) => {
 
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
@@ -163,7 +164,10 @@ const Settings = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
             >
-                <MenuItem key="Logout" onClick={handleCloseUserMenu}>
+                <MenuItem key="Logout" onClick={async () => {
+                    await logout();
+                    handleCloseUserMenu();
+                }}>
                     <Typography sx={{ textAlign: 'center' }}>Logout</Typography>
                 </MenuItem>
                 {/* {settings.map((setting) => (

@@ -6,6 +6,7 @@ import { Container, CssBaseline } from "@mui/material";
 import Header from "./header/header";
 import Providers from "./provider";
 import Authenticated from "./auth/authenticated";
+import Logout from "./auth/logout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,7 +38,7 @@ export default async function RootLayout({
       >
         <Providers authenticated={isAuthenticated}>
           <CssBaseline />
-          <Header />
+          <Header logout={Logout} />
           <Container>
             {children}
           </Container>
