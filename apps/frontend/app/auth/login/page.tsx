@@ -62,7 +62,7 @@ export default function Login() {
                             Don&apos;t have an account?{' '}
                             <Link
                                 component={NextLink}
-                                href="/auth/signup"
+                                href="/auth/sign-up"
                                 underline="hover"
                                 fontWeight="medium"
                             >

@@ -17,6 +17,8 @@ import { useState, MouseEvent, useContext } from 'react';
 import { AuthContext } from '../auth/auth.context';
 import { unAuthenticatedRoutes, routes } from '../common/constants/routes';
 import { HeaderProps } from '../common/interface/header.interface';
+import Link from 'next/link';
+import { useRouter } from "next/navigation"
 
 
 export default function Header({ logout }: HeaderProps) {
@@ -35,6 +37,8 @@ export default function Header({ logout }: HeaderProps) {
 
     const pages = isAuthenticated ? routes : unAuthenticatedRoutes;
 
+    const router = useRouter();
+
     return (
         <AppBar position="static">
             <Container maxWidth="xl">
@@ -43,8 +47,8 @@ export default function Header({ logout }: HeaderProps) {
                     <Typography
                         variant="h6"
                         noWrap
-                        component="a"
-                        href="#app-bar-with-responsive-menu"
+                        component={Link}
+                        href="/"
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
@@ -86,7 +90,11 @@ export default function Header({ logout }: HeaderProps) {
                             sx={{ display: { xs: 'block', md: 'none' } }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                                <MenuItem key={page.name} onClick={() => {
+                                    console.log(page.path);
+                                    router.push(page.path);
+                                    handleCloseNavMenu();
+                                }}>
                                     <Typography sx={{ textAlign: 'center' }}>{page.name}</Typography>
                                 </MenuItem>
                             ))}
@@ -115,7 +123,10 @@ export default function Header({ logout }: HeaderProps) {
                         {pages.map((page) => (
                             <Button
                                 key={page.name}
-                                onClick={handleCloseNavMenu}
+                                onClick={() => {
+                                    router.push(page.path);
+                                    handleCloseNavMenu();
+                                }}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
                                 {page.name}
