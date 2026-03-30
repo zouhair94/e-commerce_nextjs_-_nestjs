@@ -1,7 +1,10 @@
-import Image from "next/image";
+import CreateProductFab from "./products/create-product-fab";
 
-export default function Home() {
+export default async function Home() {
+
   return (
-    <></>
+    <>
+      <CreateProductFab />
+    </>
   );
 }
