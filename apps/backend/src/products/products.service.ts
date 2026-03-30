@@ -10,7 +10,7 @@ export class ProductsService {
     return await this.prismaService.product.create({
       data: {
         ...data,
-        userId: user,
+        userId: String(user),
       },
     });
   }

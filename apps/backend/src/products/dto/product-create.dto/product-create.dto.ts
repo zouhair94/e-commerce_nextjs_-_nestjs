@@ -13,6 +13,5 @@ export class CreateProductDto {
   @IsNotEmpty()
   price: number;
 
-  @IsString()
   userId: string;
 }

@@ -1,12 +1,12 @@
 "use server";
 import { API_URL } from "@/app/common/constants/api";
-import { FormError } from "@/app/common/interface/form-error.interface";
+import { FormResponse } from "@/app/common/interface/form-response.interface";
 import { getErrorMessage } from "@/app/common/util/errors";
 import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-export default async function login(_prevState: FormError, data: FormData) {
+export default async function login(_prevState: FormResponse, data: FormData) {
   const body = data instanceof FormData ? Object.fromEntries(data) : data;
   const response = await fetch(`${API_URL}/auth/login`, {
     method: "POST",
