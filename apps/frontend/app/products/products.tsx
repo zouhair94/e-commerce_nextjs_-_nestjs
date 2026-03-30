@@ -10,9 +10,9 @@ export default async function Products() {
     );
     return (
         <>
-            <Grid container spacing={2}>
+            <Grid container spacing={3}>
                 {validProducts.map((product) => (
-                    <Grid key={product.id} xs={12} sm={6} md={4} lg={3}>
+                    <Grid key={product.id} size={{ xs: 12, md: 4, lg: 3 }}>
                         <Product product={product} />
                     </Grid>
                 ))}
