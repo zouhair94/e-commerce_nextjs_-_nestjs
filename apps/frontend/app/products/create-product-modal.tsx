@@ -2,7 +2,7 @@
 
 import { Modal, Box, Stack, TextField, Button } from "@mui/material";
 import { useState } from "react";
-import { CreateProduct } from "./product";
+import { CreateProduct } from "./actions/product";
 import { FormResponse } from "../common/interface/form-response.interface";
 
 const styles = {
