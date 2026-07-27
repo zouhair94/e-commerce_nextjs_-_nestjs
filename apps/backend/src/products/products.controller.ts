@@ -17,7 +17,7 @@ import { CreateProductDto } from './dto/product-create.dto/product-create.dto';
 import { CurrentUser } from '../auth/current-user.decorator';
 import * as tokenPayloadInterface from '../auth/token-payload.interface';
 import { FileInterceptor } from '@nestjs/platform-express/multer/interceptors/file.interceptor';
-import { extname } from 'path';
+import { extname, join } from 'path';
 import { Multer, diskStorage } from 'multer';
 
 @Controller('products')
@@ -43,9 +43,9 @@ export class ProductsController {
   @UseInterceptors(
     FileInterceptor('image', {
       storage: diskStorage({
-        destination: 'public/products',
+        destination: join(__dirname, '..', '../public/products'),
         filename: (req, file, cb) => {
-          cb(null, `${req.params.productId}${extname(file.originalname)}`);
+          cb(null, `${req.params.productId}.jpg`);
         },
       }),
     }),
@@ -55,7 +55,7 @@ export class ProductsController {
       new ParseFilePipe({
         validators: [
           new MaxFileSizeValidator({ maxSize: 5 * 1024 * 1024 }), // 5MB
-          new FileTypeValidator({ fileType: /(jpg|jpeg|png)$/ }), // Accept only image files
+          new FileTypeValidator({ fileType: /(jpg|jpeg)$/ }), // Accept only image files
         ],
       }),
     )
