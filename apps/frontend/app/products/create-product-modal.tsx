@@ -1,9 +1,10 @@
 "use client";
 
-import { Modal, Box, Stack, TextField, Button } from "@mui/material";
+import { Modal, Box, Stack, TextField, Button, Typography } from "@mui/material";
 import { useState } from "react";
 import { CreateProduct } from "./actions/product";
 import { FormResponse } from "../common/interface/form-response.interface";
+import { CloudUpload } from "@mui/icons-material";
 
 const styles = {
     position: "absolute",
@@ -19,6 +20,7 @@ const styles = {
 
 export default function CreateProductModal({ open, handleClose }: { open: boolean, handleClose: () => void }) {
     const [response, setResponse] = useState<FormResponse>();
+    const [filename, setFilename] = useState<string>("No file selected");
     return (
 
         <Modal open={open} onClose={handleClose}>
@@ -31,7 +33,7 @@ export default function CreateProductModal({ open, handleClose }: { open: boolea
                         handleClose();
                     }
 
-                }} method="post">
+                }} >
                     <Stack spacing={2}>
                         <TextField
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -61,6 +63,15 @@ export default function CreateProductModal({ open, handleClose }: { open: boolea
                             placeholder="Product Price" error={!!response?.error}
                             helperText={response?.error}
                         />
+                        <Button component="label" variant="outlined" startIcon={<CloudUpload />} color="primary">
+                            Upload Image
+                            <input type="file" name="image" hidden onChange={(e) => {
+                                return e.target.files && setFilename(e.target.files[0].name);
+                            }} />
+                        </Button>
+                        <Typography variant="body2" color="textSecondary">
+                            {filename}
+                        </Typography>
                         <Button
                             className="bg-blue-500 hover:bg-blue-700 text   white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                             type="submit"
