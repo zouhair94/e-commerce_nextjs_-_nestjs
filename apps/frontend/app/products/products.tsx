@@ -4,8 +4,8 @@ import Product from "./product";
 
 export default async function Products() {
     const response = await getProducts();
-    const products: { id?: string; name?: string; description?: string; price?: number; }[] = response.error ? [] : response.data || [];
-    const validProducts = products.filter((product): product is { id: string; name: string; description: string; price: number; } =>
+    const products: { id?: string; name?: string; description?: string; price?: number; imageExists?: boolean }[] = response.error ? [] : response.data || [];
+    const validProducts = products.filter((product): product is { id: string; name: string; description: string; price: number; imageExists: boolean } =>
         Boolean(product.id && product.name && product.description && product.price !== undefined)
     );
     return (
