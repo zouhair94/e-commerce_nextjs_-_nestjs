@@ -5,6 +5,7 @@ import {
   FileTypeValidator,
   Get,
   MaxFileSizeValidator,
+  Param,
   ParseFilePipe,
   Post,
   UploadedFile,
@@ -43,7 +44,7 @@ export class ProductsController {
   @UseInterceptors(
     FileInterceptor('image', {
       storage: diskStorage({
-        destination: join(__dirname, '..', '../public/products'),
+        destination: join(__dirname, '..', '../public/images/products'),
         filename: (req, file, cb) => {
           cb(null, `${req.params.productId}.jpg`);
         },
@@ -68,5 +69,11 @@ export class ProductsController {
   @UseGuards(JwtAuthGuard)
   async getProducts() {
     return this.productsService.getProducts();
+  }
+
+  @Get(':productId')
+  @UseGuards(JwtAuthGuard)
+  findOne(@Param('productId') productId: string) {
+    return this.productsService.findOne(productId);
   }
 }
