@@ -10,7 +10,7 @@ export default async function Products() {
     );
     return (
         <>
-            <Grid container spacing={3}>
+            <Grid container spacing={3} sx={{ height: '85vh', overflow: 'scroll' }} >
                 {validProducts.map((product) => (
                     <Grid key={product.id} size={{ xs: 12, md: 4, lg: 3 }}>
                         <Product product={product} />
