@@ -19,7 +19,7 @@ export default function Product({ product }: ProductProps) {
                 <Typography variant="h6">{product.name}</Typography>
                 {
                     product.imageExists ?? (
-                        <Image src={`${API_URL}/products/${product.id}.jpg`}
+                        <Image src={`${API_URL}/images/products/${product.id}.jpg`}
                             width="0"
                             height="0"
                             className="w-full h-auto"
