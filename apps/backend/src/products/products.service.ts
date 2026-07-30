@@ -24,6 +24,7 @@ export class ProductsService {
         const imageExists = await this.imageExists(product.id);
         return {
           ...product,
+          imageExists,
           imageUrl: imageExists,
         };
       }),
@@ -34,7 +35,7 @@ export class ProductsService {
   private async imageExists(productId: string) {
     try {
       await fs.access(
-        join(__dirname, '../../', `public/products/${productId}.jpg`),
+        join(__dirname, '../../', `public/images/products/${productId}.jpg`),
         fs.constants.F_OK,
       );
       return true;
@@ -53,6 +54,11 @@ export class ProductsService {
       throw new NotFoundException(`Product with ID ${productId} not found`);
     }
 
-    return product;
+    const imageExists = await this.imageExists(productId);
+    return {
+      ...product,
+      imageExists,
+      imageUrl: imageExists,
+    };
   }
 }
