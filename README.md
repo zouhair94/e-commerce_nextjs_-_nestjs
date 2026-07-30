@@ -70,13 +70,13 @@ An enterprise-grade, full-stack e-commerce platform built within a modern monore
 
 # 🚀 Getting Started
 Prerequisites
-```Node.js: >= 18.x
+```text Node.js: >= 18.x
 
 pnpm: >= 8.x
 
 PostgreSQL Database running locally or via Docker
 ```
-Local Setup Instructions
+## Local Setup Instructions
 Clone the repository:
 
 ```Bash
