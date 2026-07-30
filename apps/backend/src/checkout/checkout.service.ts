@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { Injectable } from '@nestjs/common';
 import { ProductsService } from '../products/products.service';
 import Stripe from 'stripe';
@@ -31,5 +32,21 @@ export class CheckoutService {
     });
 
     return { url: session.url };
+  }
+
+  async handleCheckoutWebhook(event: any) {
+    if (event.type !== 'checkout.session.completed') {
+      return;
+    }
+
+    const session = await this.stripe.checkout.sessions.retrieve(
+      event.data.object.id,
+    );
+    if (!session.metadata || !session.metadata.productId) {
+      throw new Error('Product ID not found in session metadata');
+    }
+    await this.productsService.update(session.metadata.productId, {
+      sold: true,
+    });
   }
 }

@@ -1,3 +1,4 @@
+import Checkout from "@/app/checkout/checkout";
 import { API_URL } from "@/app/common/constants/api";
 import { get } from "@/app/common/util/fetch";
 import { Grid, Stack, Typography } from "@mui/material";
@@ -57,6 +58,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                     <Typography variant="h2">{product.name}</Typography>
                     <Typography>{product.description}</Typography>
                     <Typography variant="h4">${product.price}</Typography>
+                    <Checkout productId={product.id} />
                 </Stack>
             </Grid>
         </Grid>

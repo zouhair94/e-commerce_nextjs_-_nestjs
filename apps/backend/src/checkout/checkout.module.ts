@@ -13,8 +13,11 @@ import { ProductsModule } from 'products/products.module';
     {
       provide: Stripe,
       useFactory: (configService: ConfigService) => {
-        return new Stripe(configService.getOrThrow('STRIPE_SECRET_KEY'));
+        return new Stripe(
+          configService.getOrThrow<string>('STRIPE_SECRET_KEY'),
+        );
       },
+      inject: [ConfigService],
     },
   ],
 })
