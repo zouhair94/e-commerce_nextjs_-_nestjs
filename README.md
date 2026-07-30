@@ -80,13 +80,15 @@ PostgreSQL Database running locally or via Docker
 ## Local Setup Instructions
 Clone the repository:
 
-````bash
+```bash
 git clone [https://github.com/zouhair94/e-commerce_nextjs_-_nestjs.git](https://github.com/zouhair94/e-commerce_nextjs_-_nestjs.git)
-cd e-commerce_nextjs_-_nestjs ```
+cd e-commerce_nextjs_-_nestjs
+```
 Install dependencies:
 
 ```bash
-pnpm install ```
+pnpm install
+```
 Configure Environment Variables:
 Create .env files in apps/backend and apps/frontend following the provided .env.example templates.
 
@@ -96,19 +98,23 @@ Run scripts using pnpm from the root workspace:
 Start all services in parallel:
 
 ```bash
-pnpm dev```
+pnpm dev
+```
 Start Frontend only (@app/frontend):
 
 ```bash
-pnpm dev:frontend ```
+pnpm dev:frontend
+```
 Start Backend only (@app/backend):
 
 ```bash
-pnpm dev:backend ```
+pnpm dev:backend
+```
 Build all applications:
 
 ```bash
-pnpm build ```
+pnpm build
+```
 Lint codebase:
 
 ```bash
