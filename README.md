@@ -70,16 +70,17 @@ An enterprise-grade, full-stack e-commerce platform built within a modern monore
 
 # 🚀 Getting Started
 Prerequisites
-```text Node.js: >= 18.x
+```text
+Node.js: >= 18.x
 
 pnpm: >= 8.x
 
-PostgreSQL Database running locally or via Docker
+PostgreSQL Database running locally or via Docker 
 ```
 ## Local Setup Instructions
 Clone the repository:
 
-```bash
+````bash
 git clone [https://github.com/zouhair94/e-commerce_nextjs_-_nestjs.git](https://github.com/zouhair94/e-commerce_nextjs_-_nestjs.git)
 cd e-commerce_nextjs_-_nestjs ```
 Install dependencies:
