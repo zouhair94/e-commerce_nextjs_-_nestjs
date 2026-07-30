@@ -1,4 +1,4 @@
-markdown_content = """# 🛒 Full-Stack E-Commerce Monorepo (Next.js + NestJS)
+# 🛒 Full-Stack E-Commerce Monorepo (Next.js + NestJS)
 
 An enterprise-grade, full-stack e-commerce platform built within a modern monorepo architecture. Designed for high performance, modularity, and seamless developer experience, this project combines a fast, SEO-optimized **Next.js** storefront with a resilient, scalable **NestJS** backend REST API.
 
@@ -66,3 +66,50 @@ An enterprise-grade, full-stack e-commerce platform built within a modern monore
 │
 ├── package.json           # Root workspace configuration
 └── turbo.json             # Build pipeline and caching orchestration
+```
+
+# 🚀 Getting Started
+Prerequisites
+```Node.js: >= 18.x
+
+pnpm: >= 8.x
+
+PostgreSQL Database running locally or via Docker
+```
+Local Setup Instructions
+Clone the repository:
+
+```Bash
+git clone [https://github.com/zouhair94/e-commerce_nextjs_-_nestjs.git](https://github.com/zouhair94/e-commerce_nextjs_-_nestjs.git)
+cd e-commerce_nextjs_-_nestjs ```
+Install dependencies:
+
+```Bash
+pnpm install ```
+Configure Environment Variables:
+Create .env files in apps/backend and apps/frontend following the provided .env.example templates.
+
+Available Workspace Scripts:
+Run scripts using pnpm from the root workspace:
+
+Start all services in parallel:
+
+```Bash
+pnpm dev```
+Start Frontend only (@app/frontend):
+
+```Bash
+pnpm dev:frontend ```
+Start Backend only (@app/backend):
+
+```Bash
+pnpm dev:backend ```
+Build all applications:
+
+```Bash
+pnpm build ```
+Lint codebase:
+
+```Bash
+pnpm lint
+```
